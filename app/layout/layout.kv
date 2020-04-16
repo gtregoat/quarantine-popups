@@ -1,0 +1,57 @@
+WindowManager:
+    MainWindow:
+
+<MainWindow>:
+    name: "main_window"
+    GridLayout:
+        cols:3
+
+        GridLayout:
+            cols: 1
+
+        GridLayout:
+            cols: 1
+
+            Label:
+                text: "QUARANTINED"
+                font_size: "20sp"
+                halign: 'justify'
+                valign: 'top'
+
+            Label:
+                text: "Welcome to the quarantine world! Tired of sitting down all day? Time for this to change! This app will encourage you to do simple and fast exercises all day so keep the spirit up!"
+                text_size: self.width, None
+                size_hint: 1, None
+                halign: 'justify'
+                valign: 'top'
+
+            GridLayout:
+                cols: 1
+
+            GridLayout:
+                cols: 3
+
+                GridLayout:
+                    cols: 1
+
+                    Label:
+                        text: "Time to reminder (minutes): "
+                        text_size: self.width, None
+                        size_hint: 1, None
+                        valign: 'top'
+
+                GridLayout:
+                    cols: 1
+
+                    TextInput:
+                        id: time_to_reminder
+                        text: '30'
+
+                GridLayout:
+                    cols: 1
+
+                    Button:
+                        text: "Change"
+
+        GridLayout:
+            cols: 1

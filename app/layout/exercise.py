@@ -1,6 +1,7 @@
 from kivy.uix.floatlayout import FloatLayout
 from .popups import ShowPopup
 from kivy.lang import Builder
+from .desktop_notifications import Notifier
 
 Builder.load_string("""
 
@@ -26,4 +27,6 @@ class Exercise(FloatLayout):
         show_exercise_popup.dismiss()
 
 
-show_exercise_popup = ShowPopup(Exercise)
+show_exercise_popup = ShowPopup(Exercise, Notifier(title="Quarantine app",
+                                                   msg="Time to exercise! Check the quarantine app for ideas.",
+                                                   duration=0))

@@ -4,6 +4,7 @@ from kivy.clock import Clock
 from .exercise import show_exercise_popup, Exercise
 from .popups import ShowPopup
 from kivy.lang import Builder
+from .desktop_notifications import Notifier
 
 
 class MainWindow(Screen):
@@ -78,5 +79,5 @@ class TimeChanged(FloatLayout):
         show_time_changed_popup.dismiss()
 
 
-show_error_popup = ShowPopup(Error)
-show_time_changed_popup = ShowPopup(TimeChanged)
+show_error_popup = ShowPopup(Error, Notifier(title="Quarantine app", msg="Error changing timer", duration=0))
+show_time_changed_popup = ShowPopup(TimeChanged, Notifier(title="Quarantine app", msg="Timer changed!", duration=0))

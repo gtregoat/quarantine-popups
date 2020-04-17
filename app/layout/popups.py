@@ -2,7 +2,8 @@ from kivy.uix.popup import Popup
 
 
 class ShowPopup:
-    def __init__(self, pop_class, *args, **kwargs):
+    def __init__(self, pop_class, notifier, *args, **kwargs):
+        self.notifier = notifier
         show = pop_class(*args, **kwargs)
         self.popup_window = Popup(title="Popup Window",
                                   content=show,
@@ -10,6 +11,7 @@ class ShowPopup:
                                   size=(400, 400))
 
     def __call__(self, *args, **kwargs):
+        self.notifier(*args, **kwargs)
         self.popup_window.open()
 
     def dismiss(self):

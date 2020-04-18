@@ -3,29 +3,38 @@ import os
 
 
 class Notifier:
-    def __init__(self, *args, **kwargs):
-        """kwargs must contain msg and title"""
-        assert set(("msg", "title")).issubset(kwargs), "'msg' and 'title' must be provided to the notifier."
+    def __init__(self, title, msg):
+        """
+        The notifier creates a notification by executing the relevant code
+        on the corresponding platform (mac and windows are currently supported)
+
+        :param title: str, title for the notificaiton
+        :param msg: str, message to display
+        """
+        kwargs = {}
         if platform == "linux" or platform == "linux2":
-            pass
+            self._notifier = None
         elif platform == "darwin":
             self._notifier = """osascript -e 'display notification "{msg}" with title "{title}"' """
         elif platform == "win32":
             from win10toast import ToastNotifier
             self._notifier = ToastNotifier()
-            self.notification_method_name = "show_toast"
+            kwargs["duration"] = 0
         # Args for all platforms
-        self.args = args
+        self.title = title
+        self.msg = msg
         self.kwargs = kwargs
 
     @property
     def notify(self):
+        """Used to access the notification method, that will be called in __call__"""
         if platform == "linux" or platform == "linux2":
-            pass
+            return lambda **kwargs: "Notifications unavailable on linux"  # Replace this by a method in linux
         elif platform == "darwin":
             return lambda msg, title, **kwargs: os.system(self._notifier.format(msg=msg, title=title))
         elif platform == "win32":
-            return getattr(self._notifier, self.notification_method_name)
+            return getattr(self._notifier, "show_toast")
 
     def __call__(self, *args, **kwargs):
-        self.notify(*self.args, **self.kwargs)
+        """args and kwargs need to be kept as kivy may pass additional arguments"""
+        self.notify(title=self.title, msg=self.msg, **self.kwargs)

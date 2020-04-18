@@ -28,5 +28,4 @@ class Exercise(FloatLayout):
 
 
 show_exercise_popup = ShowPopup(Exercise, Notifier(title="Quarantine app",
-                                                   msg="Time to exercise! Check the quarantine app for ideas.",
-                                                   duration=0))
+                                                   msg="Time to exercise! Check the quarantine app for ideas."))

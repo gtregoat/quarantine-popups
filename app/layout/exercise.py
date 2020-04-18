@@ -5,9 +5,9 @@ from .desktop_notifications import Notifier
 import os
 from random import randint
 
-
-GIFS = [i for i in os.listdir("layout/gifs") if ".gif" in i]  # checking .gif instead of splitting
-                                                              # in case other files are there and there are no "."
+# checking .gif instead of splitting
+# in case other files are there and there are no "."
+GIFS = [i for i in os.listdir("layout/resources") if ".gif" in i or ".png" in i]
 
 
 Builder.load_string("""
@@ -38,7 +38,7 @@ class Exercise(FloatLayout):
     def __init__(self, **kwargs):
         super(Exercise, self).__init__(**kwargs)
         exercise = GIFS[randint(0, len(GIFS) - 1)]
-        self.ids['img'].source = os.path.join("layout", "gifs", exercise)
+        self.ids['img'].source = os.path.join("layout", "resources", exercise)
         self.ids['exercise'].text = f"Time to exercise! \n{exercise.split('.')[0]}"
 
     def dismiss(self):

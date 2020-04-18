@@ -51,7 +51,6 @@ class MainWindow(Screen):
             show_time_changed_popup()
 
 
-
 Builder.load_string("""
 
 <Error>:

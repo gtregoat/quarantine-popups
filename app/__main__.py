@@ -3,10 +3,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 import os
 from pathlib import Path
-from layout import *
-
-parent_dir = Path(__file__).parent
-os.curdir = parent_dir
+from .layout import *
 
 
 class MainApp(App):
@@ -18,7 +15,11 @@ class WindowManager(ScreenManager):
     pass
 
 
+parent_dir = Path(__file__).parent
+os.chdir(parent_dir)
 kv = Builder.load_file(os.path.join(parent_dir, "layout", "layout.kv"))
 
-if __name__ == "__main__":
+
+def run():
     MainApp().run()
+

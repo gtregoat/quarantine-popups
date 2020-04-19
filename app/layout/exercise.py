@@ -4,10 +4,13 @@ from kivy.lang import Builder
 from .desktop_notifications import Notifier
 import os
 from random import randint
+from pathlib import Path
+import os
 
 # checking .gif instead of splitting
 # in case other files are there and there are no "."
-GIFS = [i for i in os.listdir("layout/resources") if ".gif" in i or ".png" in i]
+parent_dir = Path(__file__).parent
+GIFS = [i for i in os.listdir(os.path.join(parent_dir, "resources")) if ".gif" in i or ".png" in i]
 
 
 Builder.load_string("""
